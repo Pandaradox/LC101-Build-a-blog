@@ -53,11 +53,17 @@ def index():
 def add_report():
     if request.method == "POST":
         title = (request.form["case_title"]).upper()
+        if len((title.strip())) == 0:
+            flash("ERROR: TITLE REQUIRED","error")
+            return render_template("add.html")
         report = request.form["report"]
+        if len((report.strip())) == 0:
+            flash("ERROR: REPORT REQUIRED","error")
+            return render_template("add.html")
         new_report = Report(title,report,(Agent.query.filter_by(email=session["email"]).first()).id)
         db.session.add(new_report)
         db.session.commit()
-        return render_template("single.html", title=new_report.title, report=new_report.report)
+        return redirect("/display?id={}".format(new_report.id))
     else:
         return render_template("add.html")
 

@@ -8,11 +8,11 @@
 <body>
     <h5><a href="./">FILES</a>
     <a href="./add">ADD REPORT</a></h5>
-    <!-- {% with messages = get_flashed_messages(with_categories=True) %}
+    {% with messages = get_flashed_messages(with_categories=True) %}
         {% for category,message in messages %}
             <div class="{{category}}">{{message}}</div>
         {% endfor %}
-    {% endwith %} -->
+    {% endwith %}
     {% block content %}
     {% endblock %}
 </body>
